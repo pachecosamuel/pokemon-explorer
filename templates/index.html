@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pokémon Explorer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <p class="eyebrow">Pokédex</p>
+      <h1>Pokémon Explorer</h1>
+      <p>Pesquise um Pokémon pelo nome ou número.</p>
+    </header>
+
+    <form id="search-form" class="search-form">
+      <label for="pokemon-query">Nome ou número</label>
+      <div class="search-controls">
+        <input id="pokemon-query" name="pokemon" type="search"
+               placeholder="Ex.: pikachu ou 25" autocomplete="off" required>
+        <button type="submit">Pesquisar</button>
+      </div>
+    </form>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <section id="pokemon-result" class="pokemon-card" aria-live="polite" hidden>
+      <div class="pokemon-artwork">
+        <img id="pokemon-image" alt="" hidden>
+        <p id="image-fallback" class="image-fallback" hidden>Imagem indisponível</p>
+      </div>
+      <div class="pokemon-details">
+        <p id="pokemon-number" class="pokemon-number"></p>
+        <h2 id="pokemon-name"></h2>
+        <dl class="stats">
+          <div><dt>Tipos</dt><dd id="pokemon-types"></dd></div>
+          <div><dt>Altura</dt><dd id="pokemon-height"></dd></div>
+          <div><dt>Peso</dt><dd id="pokemon-weight"></dd></div>
+          <div><dt>Habilidades</dt><dd id="pokemon-abilities"></dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
