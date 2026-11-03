@@ -9,7 +9,9 @@ Aplicação web simples para pesquisar Pokémon pelo nome ou número usando Flas
 
 ## Instalação
 
-Na raiz do projeto, crie e ative um ambiente virtual no PowerShell:
+Na raiz do projeto, crie o ambiente virtual com Python 3. No Windows, use `py`; no macOS/Linux, use `python3`.
+
+### PowerShell
 
 ```powershell
 py -m venv .venv
@@ -17,7 +19,23 @@ py -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-No macOS ou Linux, os comandos de ativação são:
+### CMD (Prompt de Comando)
+
+```cmd
+py -m venv .venv
+.venv\Scripts\activate.bat
+python -m pip install -r requirements.txt
+```
+
+### Git Bash
+
+```bash
+py -m venv .venv
+source .venv/Scripts/activate
+python -m pip install -r requirements.txt
+```
+
+### macOS/Linux
 
 ```bash
 python3 -m venv .venv
@@ -27,7 +45,7 @@ python -m pip install -r requirements.txt
 
 ## Execução
 
-Com o ambiente virtual ativo:
+Com o ambiente virtual ativo, inicie o servidor:
 
 ```bash
 python app.py
@@ -35,4 +53,4 @@ python app.py
 
 Abra <http://127.0.0.1:5000> no navegador. Pesquise por um nome, como `pikachu`, ou por um número, como `25`.
 
-O navegador chama o endpoint Flask `/api/pokemon/<identifier>`. O backend consulta a PokéAPI com timeout e devolve somente os campos usados pela interface.
+Abra <http://127.0.0.1:5000> no navegador. Pesquise por um nome, como `pikachu`, ou por um número, como `25`. O navegador chama o endpoint Flask `/api/pokemon/<identifier>`; o backend consulta a PokéAPI com timeout e devolve os campos usados pela interface.

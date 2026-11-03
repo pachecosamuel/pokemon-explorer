@@ -126,16 +126,17 @@ Registrar no `requirements.txt` as versões efetivamente utilizadas ao final.
 - [x] Destacar discretamente a mensagem de Pokémon inexistente com símbolo de atenção.
 - [x] Implementar CSS simples com regra responsiva.
 - [x] Validar visualmente e manualmente a interface original em tamanhos de tela distintos (ferramentas de desenvolvedor do Chrome; validação relatada).
-- [ ] Validar manualmente a correção que encerra o indicador de carregamento em todos os resultados da pesquisa.
+- [x] Validar manualmente a correção que encerra o indicador de carregamento após pesquisa bem-sucedida (confirmado pelo usuário).
 
 ### Etapa 4 — Revisão e entrega
 - [x] Testar nome, número, pesquisas sequenciais, entrada vazia bloqueada pelo navegador e Pokémon inexistente (validação manual relatada).
 - [x] Validar manualmente substituição do resultado anterior, ficha oculta durante a consulta, limpeza em Pokémon inexistente, nova pesquisa após erro e responsividade (relatado pelo usuário).
-- [ ] Validar manualmente o encerramento do indicador de carregamento após sucesso, erro HTTP, Pokémon inexistente e falha de comunicação.
+- [x] Validar manualmente o encerramento do indicador após sucesso e os estados de pesquisa/erro confirmados pelo usuário.
+- [ ] Validar o encerramento do indicador após falha de comunicação.
 - [ ] Testar falhas de conexão e timeout da API.
 - [x] Declarar Flask e Requests em `requirements.txt` e criar `.gitignore` para ambiente virtual e cache.
 - [x] Escrever README inicial com instalação, execução e uso.
-- [ ] Documentar comandos de ativação da venv separadamente para PowerShell, CMD e Git Bash.
+- [x] Documentar comandos de criação e ativação da venv para PowerShell, CMD, Git Bash e macOS/Linux.
 - [ ] Conferir repositório público e link de entrega.
 
 ### Registro de progresso
@@ -146,10 +147,11 @@ Registrar no `requirements.txt` as versões efetivamente utilizadas ao final.
 - Na validação relatada, foram pesquisados Pokémon por sequência numérica até 1025 e por nomes como Pikachu, Charmander, Mewtwo e Bulbasaur.
 - O navegador bloqueou o envio do formulário sem valor na validação manual relatada.
 - O usuário validou manualmente que a nova pesquisa substitui o resultado anterior, oculta a ficha durante a consulta, limpa a ficha em caso de erro, permite nova pesquisa depois de um erro e mantém a responsividade.
-- Foi identificado que o spinner permanecia visível após uma busca bem-sucedida. A correção remove a classe de carregamento no `finally`; validar manualmente esse encerramento nos caminhos de sucesso e erro.
+- O usuário confirmou que a correção do spinner foi validada com sucesso. O encerramento após sucesso, substituição do resultado, estado durante a consulta, erro de Pokémon inexistente e recuperação após erro estão validados manualmente.
 - Falha de conexão e timeout da PokéAPI continuam pendentes de validação.
+- Proposta de validação local de resiliência sem depender da indisponibilidade real da PokéAPI: em uma sessão de desenvolvimento isolada, substituir temporariamente em memória `app.requests.get` por uma função que lança `requests.Timeout` ou `requests.ConnectionError`; chamar `/api/pokemon/pikachu` pelo cliente local do Flask e conferir, respectivamente, HTTP 504 e HTTP 502 com JSON de erro. Restaurar a função original ao encerrar a sessão. Esse procedimento ainda não foi executado.
 - Repositório Git local inicializado; a validação de publicação remota continua pendente.
-- O README atual apresenta ativação para PowerShell e macOS/Linux, mas ainda não documenta comandos específicos de CMD e Git Bash.
+- O README documenta comandos separados para PowerShell, CMD, Git Bash e macOS/Linux.
 
 ## 12. Fora do escopo
 - Autenticação, usuários ou banco de dados.
