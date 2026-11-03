@@ -121,13 +121,17 @@ Registrar no `requirements.txt` as versões efetivamente utilizadas ao final.
 
 ### Etapa 3 — Interface
 - [x] Implementar inicialmente o formulário de pesquisa.
-- [x] Implementar indicação de carregamento.
+- [x] Implementar indicação visual de carregamento e limpar a ficha anterior ao iniciar nova pesquisa.
 - [x] Implementar apresentação dos dados e mensagens de erro.
+- [x] Destacar discretamente a mensagem de Pokémon inexistente com símbolo de atenção.
 - [x] Implementar CSS simples com regra responsiva.
-- [x] Validar visualmente e manualmente a interface em tamanhos de tela distintos (ferramentas de desenvolvedor do Chrome; validação relatada).
+- [x] Validar visualmente e manualmente a interface original em tamanhos de tela distintos (ferramentas de desenvolvedor do Chrome; validação relatada).
+- [ ] Validar manualmente a correção que encerra o indicador de carregamento em todos os resultados da pesquisa.
 
 ### Etapa 4 — Revisão e entrega
-- [x] Testar nome, número, entrada vazia e Pokémon inexistente (validação manual relatada).
+- [x] Testar nome, número, pesquisas sequenciais, entrada vazia bloqueada pelo navegador e Pokémon inexistente (validação manual relatada).
+- [x] Validar manualmente substituição do resultado anterior, ficha oculta durante a consulta, limpeza em Pokémon inexistente, nova pesquisa após erro e responsividade (relatado pelo usuário).
+- [ ] Validar manualmente o encerramento do indicador de carregamento após sucesso, erro HTTP, Pokémon inexistente e falha de comunicação.
 - [ ] Testar falhas de conexão e timeout da API.
 - [x] Declarar Flask e Requests em `requirements.txt` e criar `.gitignore` para ambiente virtual e cache.
 - [x] Escrever README inicial com instalação, execução e uso.
@@ -140,8 +144,9 @@ Registrar no `requirements.txt` as versões efetivamente utilizadas ao final.
 - Compilação sintática de `app.py` validada com `python -m py_compile app.py`.
 - Execução local da página e integração com a PokéAPI por pesquisas válidas e inexistentes foram validadas manualmente pelo usuário.
 - Na validação relatada, foram pesquisados Pokémon por sequência numérica até 1025 e por nomes como Pikachu, Charmander, Mewtwo e Bulbasaur.
-- O envio do formulário sem valor não iniciou pesquisa e não exibiu mensagem; avaliar mensagem orientativa para esse estado.
-- Ao ocorrer erro na busca, o resultado anterior permanece visível; avaliar limpeza ou outra indicação que evite interpretação equivocada.
+- O navegador bloqueou o envio do formulário sem valor na validação manual relatada.
+- O usuário validou manualmente que a nova pesquisa substitui o resultado anterior, oculta a ficha durante a consulta, limpa a ficha em caso de erro, permite nova pesquisa depois de um erro e mantém a responsividade.
+- Foi identificado que o spinner permanecia visível após uma busca bem-sucedida. A correção remove a classe de carregamento no `finally`; validar manualmente esse encerramento nos caminhos de sucesso e erro.
 - Falha de conexão e timeout da PokéAPI continuam pendentes de validação.
 - Repositório Git local inicializado; a validação de publicação remota continua pendente.
 - O README atual apresenta ativação para PowerShell e macOS/Linux, mas ainda não documenta comandos específicos de CMD e Git Bash.

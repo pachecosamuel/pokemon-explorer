@@ -26,6 +26,9 @@ button:disabled { cursor: wait; opacity: .7; }
 
 .status { min-height: 24px; margin: 18px 2px; color: #596579; }
 .status.error { color: #b4232b; }
+.status.loading { display: flex; align-items: center; gap: 10px; }
+.status.loading::before { width: 14px; height: 14px; border: 2px solid #cbd3df; border-top-color: #d43d3d; border-radius: 50%; content: ""; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .pokemon-card { display: grid; grid-template-columns: minmax(180px, 260px) 1fr; gap: 28px; padding: 24px; background: #fff; border: 1px solid #e0e6ef; border-radius: 14px; }
 .pokemon-artwork { display: grid; place-items: center; min-height: 220px; background: #f3f6fb; border-radius: 12px; }
 .pokemon-artwork img { width: min(100%, 230px); aspect-ratio: 1; object-fit: contain; }

@@ -10,6 +10,20 @@ function showList(element, values) {
   element.textContent = values.length ? values.join(", ") : "Não informado";
 }
 
+function clearPokemonResult() {
+  resultCard.hidden = true;
+  document.querySelector("#pokemon-number").textContent = "";
+  document.querySelector("#pokemon-name").textContent = "";
+  document.querySelector("#pokemon-types").textContent = "";
+  document.querySelector("#pokemon-height").textContent = "";
+  document.querySelector("#pokemon-weight").textContent = "";
+  document.querySelector("#pokemon-abilities").textContent = "";
+  image.removeAttribute("src");
+  image.alt = "";
+  image.hidden = true;
+  imageFallback.hidden = true;
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const identifier = input.value.trim();
@@ -22,9 +36,9 @@ form.addEventListener("submit", async (event) => {
   }
 
   button.disabled = true;
+  clearPokemonResult();
   statusMessage.textContent = "Buscando Pokémon…";
-  statusMessage.className = "status";
-  resultCard.hidden = true;
+  statusMessage.className = "status loading";
 
   try {
     const response = await fetch(`/api/pokemon/${encodeURIComponent(identifier)}`);
@@ -48,9 +62,15 @@ form.addEventListener("submit", async (event) => {
     resultCard.hidden = false;
     statusMessage.textContent = "";
   } catch (error) {
-    statusMessage.textContent = error.message;
+    statusMessage.textContent = error.message.includes("Pokémon não encontrado")
+      ? `⚠️ ${error.message}`
+      : error.message;
     statusMessage.className = "status error";
   } finally {
+    statusMessage.classList.remove("loading");
+    if (!statusMessage.classList.contains("error")) {
+      statusMessage.textContent = "";
+    }
     button.disabled = false;
   }
 });
